@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
 
 return (
 
-  <h1> Reccomended Hikes Per State </h1>
+  <h1> State of Mind Hikes </h1>
 
 )
 
