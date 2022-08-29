@@ -217,8 +217,8 @@ name: <input type='text' value={hikeName} onChange={handleNewHikeName}/><br/>
 state: <input type='text' value={hikeState} onChange={handleNewHikeState}/><br/>
 city: <input type='text' value={hikeCity} onChange={handleNewHikeCity}/><br/>
 description: <input type='text' value={hikeDescription} onChange={handlesNewHikeDescription}/><br/>
-length: <input type='text' value={hikeLength} onChange={handleNewHikeLength}/><br/>
-elevationGain: <input type='text' value={hikeElevation} onChange={handlesNewHikeElevation}/><br/>
+length: <input type='number' value={hikeLength} onChange={handleNewHikeLength}/><br/>
+elevationGain: <input type='number' value={hikeElevation} onChange={handlesNewHikeElevation}/><br/>
 difficulty: <input type='text' value={hikeDifficulty} onChange={handleNewHikeDifficulty}/><br/>
 imageArray: <input type='text' value={hikeImages} onChange={handlePushHikeImages}/><br/>
 hiked: <input type='checkbox' onChange={handlesNewHikedYet}/><br/>
