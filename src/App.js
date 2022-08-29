@@ -16,8 +16,8 @@ const [hikeName, setHikeName] = useState("")
 const [hikeState, setHikeState] = useState("")
 const [hikeCity, setHikeCity] = useState("")
 const [hikeDescription, setHikeDescription] = useState("")
-const [hikeLength, setHikeLength] = useState(Number)
-const [hikeElevation, setHikeElevation] = useState(Number)
+const [hikeLength, setHikeLength] = useState()
+const [hikeElevation, setHikeElevation] = useState()
 const [hikeDifficulty, setHikeDifficulty] = useState("")
 // not sure about this one yet
 const [hikeImages, setHikeImages] = useState([])
@@ -28,8 +28,8 @@ const [hikeUpdateName, setUpdateHikeName] = useState("")
 const [hikeUpdateState, setUpdateHikeState] = useState("")
 const [hikeUpdateCity, setUpdateHikeCity] = useState("")
 const [hikeUpdateDescription, setUpdateHikeDescription] = useState("")
-const [hikeUpdateLength, setUpdateHikeLength] = useState(Number)
-const [hikeUpdateElevation, setUpdateHikeElevation] = useState(Number)
+const [hikeUpdateLength, setUpdateHikeLength] = useState()
+const [hikeUpdateElevation, setUpdateHikeElevation] = useState()
 const [hikeUpdateDifficulty, setUpdateHikeDifficulty] = useState("")
 const [hikeUpdateImages, setUpdateHikeImages] = useState([])
 const [hikedUpdateYet, setUpdateHikedYet] = useState(false)
@@ -217,8 +217,8 @@ name: <input type='text' value={hikeName} onChange={handleNewHikeName}/><br/>
 state: <input type='text' value={hikeState} onChange={handleNewHikeState}/><br/>
 city: <input type='text' value={hikeCity} onChange={handleNewHikeCity}/><br/>
 description: <input type='text' value={hikeDescription} onChange={handlesNewHikeDescription}/><br/>
-length: <input type='text' value={hikeLength} onChange={handleNewHikeLength}/><br/>
-elevationGain: <input type='text' value={hikeElevation} onChange={handlesNewHikeElevation}/><br/>
+length: <input type='number' value={hikeLength} onChange={handleNewHikeLength}/><br/>
+elevationGain: <input type='number' value={hikeElevation} onChange={handlesNewHikeElevation}/><br/>
 difficulty: <input type='text' value={hikeDifficulty} onChange={handleNewHikeDifficulty}/><br/>
 imageArray: <input type='text' value={hikeImages} onChange={handlePushHikeImages}/><br/>
 hiked: <input type='checkbox' onChange={handlesNewHikedYet}/><br/>
