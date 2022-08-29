@@ -133,6 +133,32 @@ const handleUpdateHikedYet = (e) => {
   setUpdateHikedYet(e.target.value)
 }
 
+//////POST////////
+const handleNewHike = (e) => {
+  e.preventDefault()
+  axios.post(
+    'https://morning-meadow-41338.herokuapp.com/state_hikes',
+   {
+    name: hikeName,
+    state: hikeState,
+    city: hikeCity,
+    description: hikeDescription,
+    length: hikeLength,
+    elevationGain: hikeElevation,
+    difficulty: hikeDifficulty,
+    imageArray: hikeImages,
+    hiked: hikedYet
+  }
+).then(() => {
+    axios
+    .get('https://morning-meadow-41338.herokuapp.com/state_hikes')
+    .then((response) => {
+      setHike(response.data)
+    })
+  })
+
+}
+
 
 ///////FETCH/////
 useEffect(() => {
@@ -143,28 +169,6 @@ useEffect(() => {
   })
 }, [])
 
-//////POST////////
-const handleNewHike = (e) => {
-  e.preventDefault()
-  axios.post('https://morning-meadow-41338.herokuapp.com/state_hikes', {
-    name: hikeName,
-    state: hikeState,
-    city: hikeCity,
-    description: hikeDescription,
-    length: hikeLength,
-    elevationGain: hikeElevation,
-    difficulty: hikeDifficulty,
-    imageArray: hikeImages,
-    hiked: hikedYet
-
-
-  }).then(() => {
-    axios.get('https://morning-meadow-41338.herokuapp.com/state_hikes').then((response) => {
-      setHike(response.data)
-    })
-  })
-
-}
 
 ///// DELETE /////
 const handleDelete = (hike) => {
