@@ -124,7 +124,7 @@ const handleUpdateHikeImages = (e) => {
 
 const handlePushHikeImages = (e) => {
   hikeImages.push(e.target.value)
-
+}
 ///HIKED YET NEW & UPDATE////
 const handlesNewHikedYet = (e) => {
   setHikedYet(e.target.checked)
@@ -235,6 +235,6 @@ hiked: <input type='checkbox' onChange={handlesNewHikedYet}/><br/>
 
 
 
-}
 
+}
 export default App;
