@@ -16,12 +16,15 @@ const [hikeName, setHikeName] = useState("")
 const [hikeState, setHikeState] = useState("")
 const [hikeCity, setHikeCity] = useState("")
 const [hikeDescription, setHikeDescription] = useState("")
-const [hikeLength, setHikeLength] = useState()
-const [hikeElevation, setHikeElevation] = useState()
+const [hikeLength, setHikeLength] = useState("")
+const [hikeElevation, setHikeElevation] = useState("")
 const [hikeDifficulty, setHikeDifficulty] = useState("")
 // not sure about this one yet
-// const [hikeImages, setHikeImages] = useState([])
-// const [hikedYet, setHikedYet] = useState(false)
+
+const [hikeImages, setHikeImages] = useState([])
+
+const [hikedYet, setHikedYet] = useState(false)
+
 
 //// UPDATE HOOKS/////////////////////////////
 const [hikeUpdateName, setUpdateHikeName] = useState("")
@@ -121,27 +124,26 @@ const handleUpdateHikeDifficulty = (e) => {
   setUpdateHikeDifficulty(e.target.value)
 }
 
-/// IMAGES NEW & UPDATE////
-// const handleNewHikeImages = (e) => {
-//   setHikeImages(e.target.value)
-// }
 
-// const handleUpdateHikeImages = (e) => {
-//   setUpdateHikeImages(e.target.value)
-// }
+// IMAGES NEW & UPDATE////
+const handleNewHikeImages = (e) => {
+  setHikeImages(e.target.value)
+}
+const handleUpdateHikeImages = (e) => {
+  setUpdateHikeImages(e.target.value)
+}
 
-// const handlePushHikeImages = (e) => {
-//   hikeImages.push(e.target.value)
-// }
+const handlePushHikeImages = (e) => {
+  hikeImages.push(e.target.value)
+}
+//HIKED YET NEW & UPDATE////
+const handlesNewHikedYet = (e) => {
+  setHikedYet(e.target.checked)
+}
+const handleUpdateHikedYet = (e) => {
+  setUpdateHikedYet(e.target.value)
+}
 
-// ///HIKED YET NEW & UPDATE////
-// const handlesNewHikedYet = (e) => {
-//   setHikedYet(e.target.checked)
-// }
-
-// const handleUpdateHikedYet = (e) => {
-//   setUpdateHikedYet(e.target.value)
-// }
 
 //////POST////////
 const handleNewHike = (e) => {
@@ -156,7 +158,7 @@ const handleNewHike = (e) => {
     length: hikeLength,
     elevationGain: hikeElevation,
     difficulty: hikeDifficulty,
-  
+
   }
 ).then(() => {
     axios
@@ -187,7 +189,6 @@ useEffect(() => {
 //     })
 //   })
 
-// }
 
 
 ////// UPDATE //////
@@ -204,7 +205,9 @@ useEffect(() => {
 //         length: hikeUpdateLength,
 //         elevationGain: hikeUpdateElevation,
 //         difficulty: hikeUpdateDifficulty,
-        
+
+//         imageArray: hikeUpdateImages,
+//         hiked: hikedUpdateYet
 
 //       }
 //     ).then((response) => {
@@ -225,6 +228,7 @@ return (
 <section>
 <h2> Post New Hike </h2>
 <form onSubmit = {handleNewHike}>
+
 name: <input type='text'  onChange={handleNewHikeName}/><br/>
 state: <input type='text'  onChange={handleNewHikeState}/><br/>
 city: <input type='text'  onChange={handleNewHikeCity}/><br/>
@@ -235,9 +239,11 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
 
 
 
+
 <input type='submit' value='Post New Hike'/>
 </form>
 </section>
+
 
 <div>
   {hike.map((hikes) => {
@@ -251,6 +257,7 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
 
 
 
+
 </div>
 )
 
@@ -259,6 +266,3 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
 
 }
 export default App;
-
-
-/* imageArray: <input type='text' onChange={handlePushHikeImages}/><br/> */
