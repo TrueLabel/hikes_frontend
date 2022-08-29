@@ -124,10 +124,10 @@ const handleUpdateHikeImages = (e) => {
 
 ///HIKED YET NEW & UPDATE////
 const handlesNewHikeHikedYet = (e) => {
-  setHikedYet(e.target.value)
+  setHikedYet(e.target.checked)
 }
 const handleUpdateHikeHikedYet = (e) => {
-  setUpdateHikedYet(e.target.value)
+  setUpdateHikedYet(e.target.checked)
 }
 
 
