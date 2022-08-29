@@ -137,7 +137,7 @@ const handleUpdateHikedYet = (e) => {
 ///////FETCH/////
 useEffect(() => {
   axios
-  .get('https://damp-tundra-11598.herokuapp.com/state_hikes')
+  .get('https://morning-meadow-41338.herokuapp.com/state_hikes')
   .then((response)=>{
       setHike(response.data)
   })
@@ -146,7 +146,7 @@ useEffect(() => {
 //////POST////////
 const handleNewHike = (e) => {
   e.preventDefault()
-  axios.post('https://damp-tundra-11598.herokuapp.com/state_hikes', {
+  axios.post('https://morning-meadow-41338.herokuapp.com/state_hikes', {
     name: hikeName,
     state: hikeState,
     city: hikeCity,
@@ -159,7 +159,7 @@ const handleNewHike = (e) => {
 
 
   }).then(() => {
-    axios.get('https://damp-tundra-11598.herokuapp.com/state_hikes').then((response) => {
+    axios.get('https://morning-meadow-41338.herokuapp.com/state_hikes').then((response) => {
       setHike(response.data)
     })
   })
@@ -168,8 +168,8 @@ const handleNewHike = (e) => {
 
 ///// DELETE /////
 const handleDelete = (hike) => {
-  axios.delete(`https://damp-tundra-11598.herokuapp.com/state_hikes/${hike._id}`).then(() => {
-    axios.get('https://damp-tundra-11598.herokuapp.com/state_hikes').then((response) => {
+  axios.delete(`https://morning-meadow-41338.herokuapp.com/state_hikes/${hike._id}`).then(() => {
+    axios.get('https://morning-meadow-41338.herokuapp.com/state_hikes').then((response) => {
       setHike(response.data)
     })
   })
@@ -181,7 +181,7 @@ const handleDelete = (hike) => {
 const handleUpdateHike = (hike)=>{
   axios
     .put(
-      `https://damp-tundra-11598.herokuapp.com/state_hikes/${hike._id}`,
+      `https://morning-meadow-41338.herokuapp.com/state_hikes/${hike._id}`,
       {
 
         name: hikeUpdateName,
@@ -197,7 +197,7 @@ const handleUpdateHike = (hike)=>{
       }
     ).then((response) => {
       axios
-        .get('https://damp-tundra-11598.herokuapp.com/state_hikes')
+        .get('https://morning-meadow-41338.herokuapp.com/state_hikes')
         .then((response) => {
           setHike(response.data);
         })
