@@ -34,8 +34,8 @@ const [hikeUpdateDescription, setUpdateHikeDescription] = useState("")
 const [hikeUpdateLength, setUpdateHikeLength] = useState()
 const [hikeUpdateElevation, setUpdateHikeElevation] = useState()
 const [hikeUpdateDifficulty, setUpdateHikeDifficulty] = useState("")
-// const [hikeUpdateImages, setUpdateHikeImages] = useState([])
-// const [hikedUpdateYet, setUpdateHikedYet] = useState(false)
+const [hikeUpdateImages, setUpdateHikeImages] = useState([])
+const [hikedUpdateYet, setUpdateHikedYet] = useState(false)
 
 
 /// DISPLAYS ///
