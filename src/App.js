@@ -16,11 +16,12 @@ const [hikeName, setHikeName] = useState("")
 const [hikeState, setHikeState] = useState("")
 const [hikeCity, setHikeCity] = useState("")
 const [hikeDescription, setHikeDescription] = useState("")
-const [hikeLength, setHikeLength] = useState()
-const [hikeElevation, setHikeElevation] = useState()
+const [hikeLength, setHikeLength] = useState("")
+const [hikeElevation, setHikeElevation] = useState("")
 const [hikeDifficulty, setHikeDifficulty] = useState("")
 // not sure about this one yet
 const [hikeImages, setHikeImages] = useState([])
+
 const [hikedYet, setHikedYet] = useState(false)
 
 //// UPDATE HOOKS/////////////////////////////
@@ -114,7 +115,7 @@ const handleUpdateHikeDifficulty = (e) => {
   setUpdateHikeDifficulty(e.target.value)
 }
 
-/// IMAGES NEW & UPDATE////
+// IMAGES NEW & UPDATE////
 const handleNewHikeImages = (e) => {
   setHikeImages(e.target.value)
 }
@@ -125,7 +126,7 @@ const handleUpdateHikeImages = (e) => {
 const handlePushHikeImages = (e) => {
   hikeImages.push(e.target.value)
 }
-///HIKED YET NEW & UPDATE////
+//HIKED YET NEW & UPDATE////
 const handlesNewHikedYet = (e) => {
   setHikedYet(e.target.checked)
 }
@@ -146,8 +147,7 @@ const handleNewHike = (e) => {
     length: hikeLength,
     elevationGain: hikeElevation,
     difficulty: hikeDifficulty,
-    imageArray: hikeImages,
-    hiked: hikedYet
+
   }
 ).then(() => {
     axios
@@ -171,42 +171,42 @@ useEffect(() => {
 
 
 ///// DELETE /////
-const handleDelete = (hike) => {
-  axios.delete(`https://morning-meadow-41338.herokuapp.com/state_hikes/${hike._id}`).then(() => {
-    axios.get('https://morning-meadow-41338.herokuapp.com/state_hikes').then((response) => {
-      setHike(response.data)
-    })
-  })
-
-}
+// const handleDelete = (hike) => {
+//   axios.delete(`https://morning-meadow-41338.herokuapp.com/state_hikes/${hike._id}`).then(() => {
+//     axios.get('https://morning-meadow-41338.herokuapp.com/state_hikes').then((response) => {
+//       setHike(response.data)
+//     })
+//   })
+//
+// }
 
 
 ////// UPDATE //////
-const handleUpdateHike = (hike)=>{
-  axios
-    .put(
-      `https://morning-meadow-41338.herokuapp.com/state_hikes/${hike._id}`,
-      {
-
-        name: hikeUpdateName,
-        state: hikeUpdateState,
-        city: hikeUpdateCity,
-        description: hikeUpdateDescription,
-        length: hikeUpdateLength,
-        elevationGain: hikeUpdateElevation,
-        difficulty: hikeUpdateDifficulty,
-        imageArray: hikeUpdateImages,
-        hiked: hikedUpdateYet
-
-      }
-    ).then((response) => {
-      axios
-        .get('https://morning-meadow-41338.herokuapp.com/state_hikes')
-        .then((response) => {
-          setHike(response.data);
-        })
-  })
-}
+// const handleUpdateHike = (hike)=>{
+//   axios
+//     .put(
+//       `https://morning-meadow-41338.herokuapp.com/state_hikes/${hike._id}`,
+//       {
+//
+//         name: hikeUpdateName,
+//         state: hikeUpdateState,
+//         city: hikeUpdateCity,
+//         description: hikeUpdateDescription,
+//         length: hikeUpdateLength,
+//         elevationGain: hikeUpdateElevation,
+//         difficulty: hikeUpdateDifficulty,
+//         imageArray: hikeUpdateImages,
+//         hiked: hikedUpdateYet
+//
+//       }
+//     ).then((response) => {
+//       axios
+//         .get('https://morning-meadow-41338.herokuapp.com/state_hikes')
+//         .then((response) => {
+//           setHike(response.data);
+//         })
+//   })
+// }
 
 
 
@@ -217,20 +217,35 @@ return (
 <section>
 <h2> Post New Hike </h2>
 <form onSubmit = {handleNewHike}>
-name: <input type='text' value={hikeName} onChange={handleNewHikeName}/><br/>
-state: <input type='text' value={hikeState} onChange={handleNewHikeState}/><br/>
-city: <input type='text' value={hikeCity} onChange={handleNewHikeCity}/><br/>
-description: <input type='text' value={hikeDescription} onChange={handlesNewHikeDescription}/><br/>
-length: <input type='number' value={hikeLength} onChange={handleNewHikeLength}/><br/>
-elevationGain: <input type='number' value={hikeElevation} onChange={handlesNewHikeElevation}/><br/>
-difficulty: <input type='text' value={hikeDifficulty} onChange={handleNewHikeDifficulty}/><br/>
-imageArray: <input type='text' value={hikeImages} onChange={handlePushHikeImages}/><br/>
-hiked: <input type='checkbox' onChange={handlesNewHikedYet}/><br/>
+name: <input type='text' onChange={handleNewHikeName}/><br/>
+state: <input type='text' onChange={handleNewHikeState}/><br/>
+city: <input type='text' onChange={handleNewHikeCity}/><br/>
+description: <input type='text' onChange={handlesNewHikeDescription}/><br/>
+length: <input type='text' onChange={handleNewHikeLength}/><br/>
+elevationGain: <input type='text' onChange={handlesNewHikeElevation}/><br/>
+difficulty: <input type='text' onChange={handleNewHikeDifficulty}/><br/>
 
 <input type='submit' value='Post New Hike'/>
 </form>
 </section>
+<section>
+{
+  hike.map((hikes) => {
+      return (
+        <div>
+        {hikes.name}
+        {hikes.state}
+        {hikes.city}
+        {hikes.description}
+        {hikes.length}
+        {hikes.elevationGain}
+        {hikes.difficulty}
+        </div>
 
+      )
+  })
+}
+</section>
 
 
 
