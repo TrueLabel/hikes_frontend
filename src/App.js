@@ -51,7 +51,7 @@ const showAddHikes = () => {
 const showEditHikes = () => {
   setDisplayEditHike(!displayEditHike)
   setDisplayAddHike(false)
-  setDisplayEditEditHike(false)
+  setDisplayEditHike(false)
 }
 
 
@@ -83,7 +83,7 @@ const handleUpdateHikeCity = (e) => {
 
 
 /// DESCRIPTION NEW & UPDATE////
-const handlesNewHikeDescription = (e) => { 
+const handlesNewHikeDescription = (e) => {
   setHikeDescription(e.target.value)
 }
 const handleUpdateHikeDescription = (e) => {
@@ -91,15 +91,15 @@ const handleUpdateHikeDescription = (e) => {
 }
 
 /// LENGTH NEW & UPDATE////
-const handleNewHikeLength = (e) => { 
+const handleNewHikeLength = (e) => {
   setHikeLength(e.target.value)
 }
-const handleUpdateHikeLength = (e) => { 
+const handleUpdateHikeLength = (e) => {
   setUpdateHikeLength(e.target.value)
 }
 
 /// ELEVATION NEW & UPDATE////
-const handlesNewHikeElevation = (e) => { 
+const handlesNewHikeElevation = (e) => {
   setHikeElevation(e.target.value)
 }
 const handleUpdateHikeElevation = (e) => {
@@ -107,7 +107,7 @@ const handleUpdateHikeElevation = (e) => {
 }
 
 /// DIFFICULTY NEW & UPDATE////
-const handleNewHikeDifficulty = (e) => { 
+const handleNewHikeDifficulty = (e) => {
   setHikeDifficulty(e.target.value)
 }
 const handleUpdateHikeDifficulty = (e) => {
@@ -115,7 +115,7 @@ const handleUpdateHikeDifficulty = (e) => {
 }
 
 /// IMAGES NEW & UPDATE////
-const handleNewHikeImages = (e) => { 
+const handleNewHikeImages = (e) => {
   setHikeImages(e.target.value)
 }
 const handleUpdateHikeImages = (e) => {
@@ -123,7 +123,7 @@ const handleUpdateHikeImages = (e) => {
 }
 
 ///HIKED YET NEW & UPDATE////
-const handlesNewHikeHikedYet = (e) => { 
+const handlesNewHikeHikedYet = (e) => {
   setHikedYet(e.target.value)
 }
 const handleUpdateHikeHikedYet = (e) => {
@@ -141,7 +141,7 @@ useEffect(() => {
 }, [])
 
 //////POST////////
-const handleNewHike = (e) => { 
+const handleNewHike = (e) => {
   e.preventDefault()
   axios.post('http://localhost:3000/state_hikes', {
     name: hikeName,
@@ -153,7 +153,7 @@ const handleNewHike = (e) => {
     difficulty: hikeDifficulty,
     imageArray: hikeImages,
     hiked: hikedYet
-  
+
 
   }).then(() => {
     axios.get('http://localhost:3000/state_hikes').then((response) => {
@@ -180,7 +180,7 @@ const handleUpdateHike = (hike)=>{
     .put(
       `http://localhost:3000/state_hikes/${hike._id}`,
       {
-        
+
         name: hikeUpdateName,
         state: hikeUpdateState,
         city: hikeUpdateCity,
@@ -190,7 +190,7 @@ const handleUpdateHike = (hike)=>{
         difficulty: hikeUpdateDifficulty,
         imageArray: hikeUpdateImages,
         hiked: hikedUpdateYet
-        
+
       }
     ).then((response) => {
       axios
