@@ -226,7 +226,7 @@ return (
   <h1> State of Mind Hikes </h1>
 
 <section>
-<h2> Post New Hike </h2>
+<h2 className='header'> Post New Hike </h2>
 <form onSubmit = {handleNewHike}>
 
 name: <input type='text'  onChange={handleNewHikeName}/><br/>
@@ -245,10 +245,10 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
 </section>
 
 
-<div>
+<div  className ='maincontainer'>
   {hike.map((hikes) => {
     return (
-      <div key={hike._id}>
+      <div className='card' key={hike._id}>
         <h2>{hikes.name} {hikes.city} {hikes.state} {hikes.description} {hikes.length} {hikes.elevationGain} {hikes.difficulty}</h2>
       </div>
     )
