@@ -39,21 +39,19 @@ const [hikeUpdateDifficulty, setUpdateHikeDifficulty] = useState("")
 
 
 /// DISPLAYS ///
-const showAllHikes = () => {
-  setDisplayHike(!displayHike)
-  setDisplayAddHike(false)
-  setDisplayEditHike(false)
-}
+// const showAllHikes = () => {
+//   setDisplayHike(!displayHike)
+//   setDisplayAddHike(false)
+//   setDisplayEditHike(false)
+// }
 
 const showAddHikes = () => {
   setDisplayAddHike(!displayAddHike)
-  setDisplayHike(false)
-  setDisplayEditHike(false)
 }
 
 const showEditHikes = () => {
   setDisplayEditHike(!displayEditHike)
- 
+
 }
 
 
@@ -144,7 +142,6 @@ const handleUpdateHikeDifficulty = (e) => {
 // }
 
 
-
 //////POST////////
 const handleNewHike = (e) => {
   e.preventDefault()
@@ -227,7 +224,12 @@ return (
   <h1> State of Mind Hikes </h1>
 
 <section>
-<h2> <button>Post New Hike </button></h2>
+
+<h2> Post New Hike </h2>
+<button onClick={showAddHikes}>
+Add Here
+</button>
+{displayAddHike?
 <form onSubmit = {handleNewHike}>
 
 name: <input type='text'  onChange={handleNewHikeName}/><br/>
@@ -243,6 +245,7 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
 
 <input type='submit' value='Post New Hike'/>
 </form>
+: null }
 </section>
 
 
@@ -257,8 +260,10 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
         }}>
         Remove this Hike</button>
         <br/>
+
         <button onClick={showEditHikes}>Edit</button>
         {displayEditHike ? 
+
         <section>
         <form onSubmit={() => {handleUpdateHike(hikes)} }>
         name: <input type='text' placeholder={hikes.name} onChange={handleUpdateHikeName}/><br/>
