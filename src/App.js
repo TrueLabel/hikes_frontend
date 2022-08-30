@@ -39,22 +39,18 @@ const [hikeUpdateDifficulty, setUpdateHikeDifficulty] = useState("")
 
 
 /// DISPLAYS ///
-const showAllHikes = () => {
-  setDisplayHike(!displayHike)
-  setDisplayAddHike(false)
-  setDisplayEditHike(false)
-}
+// const showAllHikes = () => {
+//   setDisplayHike(!displayHike)
+//   setDisplayAddHike(false)
+//   setDisplayEditHike(false)
+// }
 
 const showAddHikes = () => {
   setDisplayAddHike(!displayAddHike)
-  setDisplayHike(false)
-  setDisplayEditHike(false)
 }
 
 const showEditHikes = () => {
   setDisplayEditHike(!displayEditHike)
-  setDisplayAddHike(false)
-  setDisplayEditHike(false)
 }
 
 
@@ -144,31 +140,6 @@ const handleUpdateHikeDifficulty = (e) => {
 //   setUpdateHikedYet(e.target.value)
 // }
 
-////// UPDATE //////
-const handleUpdateHike = (hikes)=>{
-  axios
-    .put(
-      `https://morning-meadow-41338.herokuapp.com/state_hikes/${hikes._id}`,
-      {
-
-        name: hikeUpdateName,
-        state: hikeUpdateState,
-        city: hikeUpdateCity,
-        description: hikeUpdateDescription,
-        length: hikeUpdateLength,
-        elevationGain: hikeUpdateElevation,
-        difficulty: hikeUpdateDifficulty,
-
-      }
-    ).then((response) => {
-      axios
-        .get('https://morning-meadow-41338.herokuapp.com/state_hikes')
-        .then((response) => {
-          setHike(response.data);
-        })
-  })
-}
-
 //////POST////////
 const handleNewHike = (e) => {
   e.preventDefault()
@@ -252,6 +223,10 @@ return (
 
 <section>
 <h2> Post New Hike </h2>
+<button onClick={showAddHikes}>
+Add Here
+</button>
+{displayAddHike?
 <form onSubmit = {handleNewHike}>
 
 name: <input type='text'  onChange={handleNewHikeName}/><br/>
@@ -267,10 +242,11 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
 
 <input type='submit' value='Post New Hike'/>
 </form>
+: null }
 </section>
 
 
-<div>
+<div className='maincontainer'>
   {hike.map((hikes) => {
     return (
 
@@ -281,9 +257,10 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
         }}>
         Remove this Hike</button>
         <br/>
-        <button>
+        <button onClick={showEditHikes}>
         Edit
         </button>
+        {displayEditHike?
         <section>
         <form onSubmit={() => {handleUpdateHike(hikes)} }>
         name: <input type='text' placeholder={hikes.name} onChange={handleUpdateHikeName}/><br/>
@@ -297,6 +274,7 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
         <input type='submit' value='Update Hike'/>
         </form>
         </section>
+        : null }
       </div>
     )
   })
