@@ -51,6 +51,7 @@ const showAddHikes = () => {
 
 const showEditHikes = () => {
   setDisplayEditHike(!displayEditHike)
+
 }
 
 
@@ -140,6 +141,7 @@ const handleUpdateHikeDifficulty = (e) => {
 //   setUpdateHikedYet(e.target.value)
 // }
 
+
 //////POST////////
 const handleNewHike = (e) => {
   e.preventDefault()
@@ -222,6 +224,7 @@ return (
   <h1> State of Mind Hikes </h1>
 
 <section>
+
 <h2> Post New Hike </h2>
 <button onClick={showAddHikes}>
 Add Here
@@ -257,10 +260,10 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
         }}>
         Remove this Hike</button>
         <br/>
-        <button onClick={showEditHikes}>
-        Edit
-        </button>
-        {displayEditHike?
+
+        <button onClick={showEditHikes}>Edit</button>
+        {displayEditHike ? 
+
         <section>
         <form onSubmit={() => {handleUpdateHike(hikes)} }>
         name: <input type='text' placeholder={hikes.name} onChange={handleUpdateHikeName}/><br/>
