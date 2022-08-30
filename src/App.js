@@ -53,8 +53,7 @@ const showAddHikes = () => {
 
 const showEditHikes = () => {
   setDisplayEditHike(!displayEditHike)
-  setDisplayAddHike(false)
-  setDisplayEditHike(false)
+ 
 }
 
 
@@ -144,30 +143,7 @@ const handleUpdateHikeDifficulty = (e) => {
 //   setUpdateHikedYet(e.target.value)
 // }
 
-////// UPDATE //////
-const handleUpdateHike = (hikes)=>{
-  axios
-    .put(
-      `https://morning-meadow-41338.herokuapp.com/state_hikes/${hikes._id}`,
-      {
 
-        name: hikeUpdateName,
-        state: hikeUpdateState,
-        city: hikeUpdateCity,
-        description: hikeUpdateDescription,
-        length: hikeUpdateLength,
-        elevationGain: hikeUpdateElevation,
-        difficulty: hikeUpdateDifficulty,
-
-      }
-    ).then((response) => {
-      axios
-        .get('https://morning-meadow-41338.herokuapp.com/state_hikes')
-        .then((response) => {
-          setHike(response.data);
-        })
-  })
-}
 
 //////POST////////
 const handleNewHike = (e) => {
@@ -251,7 +227,7 @@ return (
   <h1> State of Mind Hikes </h1>
 
 <section>
-<h2> Post New Hike </h2>
+<h2> <button>Post New Hike </button></h2>
 <form onSubmit = {handleNewHike}>
 
 name: <input type='text'  onChange={handleNewHikeName}/><br/>
@@ -270,7 +246,7 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
 </section>
 
 
-<div>
+<div className='maincontainer'>
   {hike.map((hikes) => {
     return (
 
@@ -281,9 +257,8 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
         }}>
         Remove this Hike</button>
         <br/>
-        <button>
-        Edit
-        </button>
+        <button onClick={showEditHikes}>Edit</button>
+        {displayEditHike ? 
         <section>
         <form onSubmit={() => {handleUpdateHike(hikes)} }>
         name: <input type='text' placeholder={hikes.name} onChange={handleUpdateHikeName}/><br/>
@@ -297,6 +272,7 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
         <input type='submit' value='Update Hike'/>
         </form>
         </section>
+        : null }
       </div>
     )
   })
