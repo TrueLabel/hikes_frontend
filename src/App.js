@@ -250,6 +250,7 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
     return (
       <div className='card' key={hike._id}>
         <h2>{hikes.name} {hikes.city} {hikes.state} {hikes.description} {hikes.length} {hikes.elevationGain} {hikes.difficulty}</h2>
+        <button>Hiked</button>
       </div>
     )
   })}
