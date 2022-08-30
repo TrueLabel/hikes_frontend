@@ -19,9 +19,8 @@ const [hikeDescription, setHikeDescription] = useState("")
 const [hikeLength, setHikeLength] = useState("")
 const [hikeElevation, setHikeElevation] = useState("")
 const [hikeDifficulty, setHikeDifficulty] = useState("")
-// not sure about this one yet
-
-// const [hikeImages, setHikeImages] = useState([])
+const [hikeImage, setHikeImage] = useState("")
+const [hikeImageArray, setHikeImageArray] = useState([])
 
 // const [hikedYet, setHikedYet] = useState(false)
 
@@ -34,7 +33,9 @@ const [hikeUpdateDescription, setUpdateHikeDescription] = useState("")
 const [hikeUpdateLength, setUpdateHikeLength] = useState()
 const [hikeUpdateElevation, setUpdateHikeElevation] = useState()
 const [hikeUpdateDifficulty, setUpdateHikeDifficulty] = useState("")
-// const [hikeUpdateImages, setUpdateHikeImages] = useState([])
+const [hikeUpdateImage, setUpdateHikeImage] = useState("")
+
+
 // const [hikedUpdateYet, setUpdateHikedYet] = useState(false)
 
 
@@ -121,18 +122,29 @@ const handleUpdateHikeDifficulty = (e) => {
   setUpdateHikeDifficulty(e.target.value)
 }
 
+// IMAGE NEW & UDPATE ///////
 
-// IMAGES NEW & UPDATE////
-// const handleNewHikeImages = (e) => {
-//   setHikeImages(e.target.value)
-// }
-// const handleUpdateHikeImages = (e) => {
-//   setUpdateHikeImages(e.target.value)
-// }
+const handleNewHikeImage = (e) => {
+  setHikeImage(e.target.value)
+}
 
-// const handlePushHikeImages = (e) => {
-//   hikeImages.push(e.target.value)
-// }
+const handleUpdateHikeImage = (e) => {
+  setUpdateHikeImage(e.target.value)
+}
+
+
+
+// IMAGE ARRAY NEW & UPDATE////
+
+const handleNewHikeImages = () => {
+
+  setHikeImageArray([hikeImage].concat(hikeImageArray))
+}
+
+const handleUpdateHikeImages = () => {
+
+  setHikeImageArray([hikeUpdateImage].concat(hikeImageArray))
+}
 //HIKED YET NEW & UPDATE////
 // const handlesNewHikedYet = (e) => {
 //   setHikedYet(e.target.checked)
@@ -155,6 +167,7 @@ const handleNewHike = (e) => {
     length: hikeLength,
     elevationGain: hikeElevation,
     difficulty: hikeDifficulty,
+    imageArray: hikeImage
 
   }
 ).then(() => {
@@ -206,6 +219,8 @@ const handleUpdateHike = (hikes)=>{
         length: hikeUpdateLength? hikeUpdateLength : hikes.length,
         elevationGain: hikeUpdateElevation? hikeUpdateElevation : hikes.elevationGain,
         difficulty: hikeUpdateDifficulty? hikeUpdateDifficulty : hikes.difficulty,
+        imageArray: hikeUpdateImage
+        //////////needs work ^^^^^^^
       }
     ).then(() => {
       axios
@@ -239,7 +254,7 @@ description: <input type='text'  onChange={handlesNewHikeDescription}/><br/>
 length: <input type='number'  onChange={handleNewHikeLength}/><br/>
 elevationGain: <input type='number'  onChange={handlesNewHikeElevation}/><br/>
 difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
-
+Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 
 
 
@@ -255,6 +270,7 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
 
       <div className='card' key={hikes._id}>
         <h2>{hikes.name} {hikes.city} {hikes.state} {hikes.description} {hikes.length} {hikes.elevationGain} {hikes.difficulty}</h2>
+        {hikes.imageArray}
         <button onClick = {(e) => {
             handleDelete(hikes)
         }}>
@@ -262,7 +278,7 @@ difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
         <br/>
 
         <button onClick={showEditHikes}>Edit</button>
-        {displayEditHike ? 
+        {displayEditHike ?
 
         <section>
         <form onSubmit={() => {handleUpdateHike(hikes)} }>
