@@ -1,6 +1,12 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import './App.css';
+import { Carousel } from 'react-responsive-carousel';
+import CarouselComponent from "./components/carousel.component";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+
+
 
 const App = () => {
 ////////////// HOOKS /////////////////////////
@@ -20,7 +26,7 @@ const [hikeLength, setHikeLength] = useState("")
 const [hikeElevation, setHikeElevation] = useState("")
 const [hikeDifficulty, setHikeDifficulty] = useState("")
 const [hikeImage, setHikeImage] = useState("")
-const [hikeImageArray, setHikeImageArray] = useState([])
+// const [hikeImageArray, setHikeImageArray] = useState([])
 
 // const [hikedYet, setHikedYet] = useState(false)
 
@@ -128,23 +134,27 @@ const handleNewHikeImage = (e) => {
   setHikeImage(e.target.value)
 }
 
+
 const handleUpdateHikeImage = (e) => {
   setUpdateHikeImage(e.target.value)
 }
 
 
 
+
+
+
 // IMAGE ARRAY NEW & UPDATE////
 
-const handleNewHikeImages = () => {
+// const handleNewHikeImages = () => {
 
-  setHikeImageArray([hikeImage].concat(hikeImageArray))
-}
+//   setHikeImageArray([hikeImage].concat(hikeImageArray))
+// }
 
-const handleUpdateHikeImages = () => {
+// const handleUpdateHikeImages = () => {
 
-  setHikeImageArray([hikeUpdateImage].concat(hikeImageArray))
-}
+//   setHikeImageArray([hikeUpdateImage].concat(hikeImageArray))
+// }
 //HIKED YET NEW & UPDATE////
 // const handlesNewHikedYet = (e) => {
 //   setHikedYet(e.target.checked)
@@ -171,6 +181,7 @@ const handleNewHike = (e) => {
 
   }
 ).then(() => {
+  
     axios
     .get('https://morning-meadow-41338.herokuapp.com/state_hikes')
     .then((response) => {
@@ -220,6 +231,7 @@ const handleUpdateHike = (hikes)=>{
         elevationGain: hikeUpdateElevation? hikeUpdateElevation : hikes.elevationGain,
         difficulty: hikeUpdateDifficulty? hikeUpdateDifficulty : hikes.difficulty,
         imageArray: hikeUpdateImage
+        // imageArray: hikeUpdateImage? hikeUpdateImage : hikes.imageArray
         //////////needs work ^^^^^^^
       }
     ).then(() => {
@@ -231,7 +243,11 @@ const handleUpdateHike = (hikes)=>{
   })
 }
 
-
+// const imageLoop = () => {
+//   for(let i = 0; i < hike.imageArray.length; i++) {
+    
+//   }
+// }
 
 
 return (
@@ -263,14 +279,31 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 : null }
 </section>
 
-
 <div className='maincontainer'>
   {hike.map((hikes) => {
+    console.log(hikes.imageArray)
     return (
 
       <div className='card' key={hikes._id}>
-        <h2>{hikes.name} {hikes.city} {hikes.state} {hikes.description} {hikes.length} {hikes.elevationGain} {hikes.difficulty}</h2>
-        {hikes.imageArray}
+          
+          <div className="carousel-wrapper">
+            <Carousel>
+            {hikes.imageArray?.map((images)=>{
+              return(
+            
+                <img src={images}/>
+              )
+            })}
+                
+            </Carousel>
+        </div>
+
+        <h2>{hikes.name} <br/> {hikes.city}  {hikes.state} <br/> {hikes.length} Miles <br/> {hikes.elevationGain} Ft <br/> {hikes.difficulty}</h2>
+
+        <details>
+          <summary>Description</summary>
+          {hikes.description}  
+        </details>
         <button onClick = {(e) => {
             handleDelete(hikes)
         }}>
@@ -289,7 +322,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         length: <input type='number' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
-
+          image: <input type='text' placeholder="paste image url here" onChange={handleUpdateHikeImage}/>
         <input type='submit' value='Update Hike'/>
         </form>
         </section>
