@@ -326,7 +326,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         <button onClick={(e) => {handleUpdateHike(hikes)} } type='submit' value='Update Hike'>
         Update hike
         </button>
-
+        
         </section>
         : null }
       </div>
