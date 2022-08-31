@@ -242,6 +242,7 @@ const handleUpdateHike = (hikes)=>{
           setHike(response.data);
         })
   })
+  setDisplayEditHike(!displayEditHike)
 }
 
 // const imageLoop = () => {
@@ -315,7 +316,6 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         {displayEditHike ?
 
         <section>
-        <form onSubmit={() => {handleUpdateHike(hikes)} }>
         name: <input type='text' placeholder={hikes.name} onChange={handleUpdateHikeName}/><br/>
         state: <input type='text' placeholder={hikes.state}  onChange={handleUpdateHikeState}/><br/>
         city: <input type='text' placeholder={hikes.city} onChange={handleUpdateHikeCity}/><br/>
@@ -324,8 +324,11 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
 
-        <input type='submit' value='Update Hike'/>
-        </form>
+
+        <button onClick={(e) => {handleUpdateHike(hikes)} } type='submit' value='Update Hike'>
+        Update hike
+        </button>
+
         </section>
         : null }
       </div>
@@ -346,6 +349,3 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 
 }
 export default App;
-
-
-{/*image: <input type='text' defaultValue={hikes.imageArray} placeholder="paste image url here" onChange={handleUpdateHikeImage}/>*/}
