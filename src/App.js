@@ -243,6 +243,7 @@ const handleUpdateHike = (hikes)=>{
         })
   })
   setDisplayEditHike(!displayEditHike)
+  
 }
 
 // const imageLoop = () => {
