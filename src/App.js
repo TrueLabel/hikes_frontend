@@ -22,8 +22,8 @@ const [hikeName, setHikeName] = useState("")
 const [hikeState, setHikeState] = useState("")
 const [hikeCity, setHikeCity] = useState("")
 const [hikeDescription, setHikeDescription] = useState("")
-const [hikeLength, setHikeLength] = useState("")
-const [hikeElevation, setHikeElevation] = useState("")
+const [hikeLength, setHikeLength] = useState()
+const [hikeElevation, setHikeElevation] = useState()
 const [hikeDifficulty, setHikeDifficulty] = useState("")
 const [hikeImage, setHikeImage] = useState("")
 // const [hikeImageArray, setHikeImageArray] = useState([])
@@ -39,7 +39,7 @@ const [hikeUpdateDescription, setUpdateHikeDescription] = useState("")
 const [hikeUpdateLength, setUpdateHikeLength] = useState()
 const [hikeUpdateElevation, setUpdateHikeElevation] = useState()
 const [hikeUpdateDifficulty, setUpdateHikeDifficulty] = useState("")
-const [hikeUpdateImage, setUpdateHikeImage] = useState("")
+// const [hikeUpdateImage, setUpdateHikeImage] = useState("")
 
 
 // const [hikedUpdateYet, setUpdateHikedYet] = useState(false)
@@ -135,9 +135,9 @@ const handleNewHikeImage = (e) => {
 }
 
 
-const handleUpdateHikeImage = (e) => {
-  setUpdateHikeImage(e.target.value)
-}
+// const handleUpdateHikeImage = (e) => {
+//   setUpdateHikeImage(e.target.value)
+// }
 
 
 
@@ -181,7 +181,7 @@ const handleNewHike = (e) => {
 
   }
 ).then(() => {
-  
+
     axios
     .get('https://morning-meadow-41338.herokuapp.com/state_hikes')
     .then((response) => {
@@ -231,7 +231,8 @@ const handleUpdateHike = (hikes)=>{
         elevationGain: hikeUpdateElevation? hikeUpdateElevation : hikes.elevationGain,
         difficulty: hikeUpdateDifficulty? hikeUpdateDifficulty : hikes.difficulty,
         // imageArray: hikeUpdateImage
-        imageArray: hikeUpdateImage? hikeUpdateImage : hikes.imageArray
+
+        // imageArray: hikeUpdateImage? hikeUpdateImage : hikes.imageArray
         //////////needs work ^^^^^^^
       }
     ).then(() => {
@@ -245,7 +246,7 @@ const handleUpdateHike = (hikes)=>{
 
 // const imageLoop = () => {
 //   for(let i = 0; i < hike.imageArray.length; i++) {
-    
+
 //   }
 // }
 
@@ -285,16 +286,16 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
     return (
 
       <div className='card' key={hikes._id}>
-          
+
           <div className="carousel-wrapper">
             <Carousel>
             {hikes.imageArray?.map((images)=>{
               return(
-            
+
                 <img src={images}/>
               )
             })}
-                
+
             </Carousel>
         </div>
 
@@ -302,7 +303,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 
         <details>
           <summary>Description</summary>
-          {hikes.description}  
+          {hikes.description}
         </details>
         <button onClick = {(e) => {
             handleDelete(hikes)
@@ -322,7 +323,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         length: <input type='number' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
-        image: <input type='text'  onChange={handleUpdateHikeImage}/>
+
         <input type='submit' value='Update Hike'/>
         </form>
         </section>
@@ -345,3 +346,6 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 
 }
 export default App;
+
+
+{/*image: <input type='text' defaultValue={hikes.imageArray} placeholder="paste image url here" onChange={handleUpdateHikeImage}/>*/}
