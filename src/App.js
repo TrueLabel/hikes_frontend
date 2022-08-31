@@ -231,6 +231,7 @@ const handleUpdateHike = (hikes)=>{
         elevationGain: hikeUpdateElevation? hikeUpdateElevation : hikes.elevationGain,
         difficulty: hikeUpdateDifficulty? hikeUpdateDifficulty : hikes.difficulty,
         // imageArray: hikeUpdateImage
+
         // imageArray: hikeUpdateImage? hikeUpdateImage : hikes.imageArray
         //////////needs work ^^^^^^^
       }
@@ -322,7 +323,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         length: <input type='number' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
-      
+
         <input type='submit' value='Update Hike'/>
         </form>
         </section>
