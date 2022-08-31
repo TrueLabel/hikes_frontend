@@ -323,12 +323,10 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         length: <input type='number' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
-
-
         <button onClick={(e) => {handleUpdateHike(hikes)} } type='submit' value='Update Hike'>
         Update hike
         </button>
-
+        
         </section>
         : null }
       </div>
@@ -349,3 +347,4 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 
 }
 export default App;
+
