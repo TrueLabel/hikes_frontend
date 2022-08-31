@@ -230,8 +230,8 @@ const handleUpdateHike = (hikes)=>{
         length: hikeUpdateLength? hikeUpdateLength : hikes.length,
         elevationGain: hikeUpdateElevation? hikeUpdateElevation : hikes.elevationGain,
         difficulty: hikeUpdateDifficulty? hikeUpdateDifficulty : hikes.difficulty,
-        imageArray: hikeUpdateImage
-        // imageArray: hikeUpdateImage? hikeUpdateImage : hikes.imageArray
+        // imageArray: hikeUpdateImage
+        imageArray: hikeUpdateImage? hikeUpdateImage : hikes.imageArray
         //////////needs work ^^^^^^^
       }
     ).then(() => {
@@ -322,7 +322,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         length: <input type='number' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
-          image: <input type='text' placeholder="paste image url here" onChange={handleUpdateHikeImage}/>
+        image: <input type='text'  onChange={handleUpdateHikeImage}/>
         <input type='submit' value='Update Hike'/>
         </form>
         </section>
