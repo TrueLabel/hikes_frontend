@@ -39,7 +39,7 @@ const [hikeUpdateDescription, setUpdateHikeDescription] = useState("")
 const [hikeUpdateLength, setUpdateHikeLength] = useState()
 const [hikeUpdateElevation, setUpdateHikeElevation] = useState()
 const [hikeUpdateDifficulty, setUpdateHikeDifficulty] = useState("")
-// const [hikeUpdateImage, setUpdateHikeImage] = useState("")
+const [hikeUpdateImage, setUpdateHikeImage] = useState("")
 
 
 // const [hikedUpdateYet, setUpdateHikedYet] = useState(false)
@@ -135,9 +135,9 @@ const handleNewHikeImage = (e) => {
 }
 
 
-// const handleUpdateHikeImage = (e) => {
-//   setUpdateHikeImage(e.target.value)
-// }
+const handleUpdateHikeImage = (e) => {
+  setUpdateHikeImage(e.target.value)
+}
 
 
 
@@ -231,7 +231,7 @@ const handleUpdateHike = (hikes)=>{
         elevationGain: hikeUpdateElevation? hikeUpdateElevation : hikes.elevationGain,
         difficulty: hikeUpdateDifficulty? hikeUpdateDifficulty : hikes.difficulty,
         // imageArray: hikeUpdateImage
-        // imageArray: hikeUpdateImage? hikeUpdateImage : hikes.imageArray
+        imageArray: hikeUpdateImage? hikeUpdateImage : hikes.imageArray
         //////////needs work ^^^^^^^
       }
     ).then(() => {
@@ -243,13 +243,6 @@ const handleUpdateHike = (hikes)=>{
   })
   setDisplayEditHike(!displayEditHike)
 }
-
-// const imageLoop = () => {
-//   for(let i = 0; i < hike.imageArray.length; i++) {
-
-//   }
-// }
-
 
 return (
 <div>
@@ -322,7 +315,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         length: <input type='number' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
-
+        image: <input type='text' placeholder='image url' onChange={handleUpdateHikeImage}/><br/>
         <button onClick={(e) => {handleUpdateHike(hikes)} } type='submit' value='Update Hike'>
         Update hike
         </button>
