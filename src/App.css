@@ -7,6 +7,55 @@
   pointer-events: none;
 }
 
+img {
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  width: 100%;
+  margin-top: 0px;
+}
+
+.card {
+  border: 2px black solid;
+  border-radius: 15px;
+  background-color: white;
+  width: 20em;
+  margin-top: 10px;
+}
+
+.header {
+  position: static;
+  top: 100px;
+}
+
+.maincontainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10%;
+  margin-right: 10%;
+  justify-content: space-evenly;
+}
+
+button {
+  border-radius: 25px;
+  margin: 10px;
+  background-color: black;
+  color: white;
+  padding: 3px;
+}
+
+body {
+  text-align: center;
+  background-color: RGB(0,0,0,.175);
+  z-index: -5;
+  margin: auto;
+}
+
+button:hover {
+  background-color: blue;
+  color: white;
+  padding: 5px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -36,3 +85,5 @@
     transform: rotate(360deg);
   }
 }
+
+
