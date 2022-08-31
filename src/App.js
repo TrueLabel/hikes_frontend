@@ -348,4 +348,4 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 export default App;
 
 
-{/*image: <input type='text' defaultValue={hikes.imageArray} placeholder="paste image url here" onChange={handleUpdateHikeImage}/>*/}
+
