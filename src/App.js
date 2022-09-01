@@ -45,8 +45,7 @@ const [hikeUpdateLength, setUpdateHikeLength] = useState()
 const [hikeUpdateElevation, setUpdateHikeElevation] = useState()
 const [hikeUpdateDifficulty, setUpdateHikeDifficulty] = useState("")
 const [hikeUpdateImage, setUpdateHikeImage] = useState("")
-const [lat, setLat] = useState("")
-const [lng, setLng] = useState("")
+
 
 // const [hikedUpdateYet, setUpdateHikedYet] = useState(false)
 
@@ -176,13 +175,9 @@ const defaultCenter = {
 // LatLng={{lat: hikes.lat, lng: hikes.lng}} 
 
 
-const handleUpdateLat = (e) => {
-  setLat(e.targer.value)
-}
-
-const handleUpdateLng = (e) => {
-  setLng(e.target.value)
-}
+// const handleUpdateLng = (e) => {
+//   setLng(e.target.value)
+// }
 
 // IMAGE ARRAY NEW & UPDATE////
 
@@ -220,8 +215,7 @@ const handleNewHike = (e) => {
     elevationGain: hikeElevation,
     difficulty: hikeDifficulty,
     imageArray: hikeImage,
-    lat: lat,
-    lng: lng
+
   }
 ).then(() => {
 
@@ -349,7 +343,9 @@ longitude: <input type='text' onChange={handleNewLng}/><br/>
 
 
             zoom={10}
-            center={defaultCenter}
+            // center={defaultCenter}
+            center= {{lat: hikes.lat , lng: hikes.lng }}
+
 
 
           />
