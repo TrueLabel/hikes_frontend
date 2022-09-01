@@ -45,8 +45,7 @@ const [hikeUpdateLength, setUpdateHikeLength] = useState()
 const [hikeUpdateElevation, setUpdateHikeElevation] = useState()
 const [hikeUpdateDifficulty, setUpdateHikeDifficulty] = useState("")
 const [hikeUpdateImage, setUpdateHikeImage] = useState("")
-const [lat, setLat] = useState("")
-const [lng, setLng] = useState("")
+
 
 // const [hikedUpdateYet, setUpdateHikedYet] = useState(false)
 
@@ -160,26 +159,28 @@ const mapStyles = {
   height: "25vh",
   width: "100%"};
 
+
   // this would be a new state probs for lat & long that represents our updated schema
 
   // const [lat, setLat] = useState("")
   // const [lng, setLng] = useState("")
 
 
+
 const defaultCenter = {
   lat: 60.0180556, lng: -149.9861111
 }
+//  const center = { lat: lat, lng: lng}
 
+// LatLng={{lat: hikes.lat, lng: hikes.lng}} 
 
+// const handleUpdateLat = (e) => {
+//   setLat(e.targer.value)
+// }
 
-
-const handleUpdateLat = (e) => {
-  setLat(e.targer.value)
-}
-
-const handleUpdateLng = (e) => {
-  setLng(e.target.value)
-}
+// const handleUpdateLng = (e) => {
+//   setLng(e.target.value)
+// }
 
 // IMAGE ARRAY NEW & UPDATE////
 
@@ -216,8 +217,8 @@ const handleNewHike = (e) => {
     length: hikeLength,
     elevationGain: hikeElevation,
     difficulty: hikeDifficulty,
-    imageArray: hikeImage
-
+    imageArray: hikeImage,
+    
   }
 ).then(() => {
 
@@ -336,13 +337,17 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 
             </Carousel>
       <div className="map">
+    
             <LoadScript
             googleMapsApiKey='AIzaSyDlshunWWUTan3KLTvvKlOKtRW-Na7cbDo'>
             <GoogleMap
             mapContainerStyle={mapStyles}
 
+
             zoom={10}
-            center={defaultCenter}
+            // center={defaultCenter}
+            center= {{lat: hikes.lat , lng: hikes.lng }}
+
 
           />
           </LoadScript>
