@@ -20,6 +20,7 @@ const [hike, setHike] = useState([])
 const [displayHike, setDisplayHike] = useState(false)
 const [displayAddHike, setDisplayAddHike] = useState(false)
 const [displayEditHike, setDisplayEditHike] = useState(false)
+const [displayHikeImages, setHikeImages] = useState(false)
 
 // model states
 const [hikeName, setHikeName] = useState("")
@@ -70,6 +71,10 @@ const showAddHikes = () => {
 
 const showEditHikes = (hikes) => {
   document.getElementById('edithike'+hikes._id).classList.toggle('showhide');
+}
+
+const showEditImages = () => {
+  setHikeImages(!displayHikeImages)
 }
 
 
@@ -157,6 +162,9 @@ const mapStyles = {
 
   // this would be a new state probs for lat & long that represents our updated schema
 
+  // const [lat, setLat] = useState("")
+  // const [lng, setLng] = useState("")
+
 
 const defaultCenter = {
   lat: 60.0180556, lng: -149.9861111
@@ -176,14 +184,16 @@ const handleUpdateLng = (e) => {
 // IMAGE ARRAY NEW & UPDATE////
 
 // const handleNewHikeImages = () => {
-
+//
 //   setHikeImageArray([hikeImage].concat(hikeImageArray))
 // }
 
 // const handleUpdateHikeImages = () => {
-
+//
 //   setHikeImageArray([hikeUpdateImage].concat(hikeImageArray))
 // }
+
+
 //HIKED YET NEW & UPDATE////
 // const handlesNewHikedYet = (e) => {
 //   setHikedYet(e.target.checked)
@@ -260,8 +270,7 @@ const handleUpdateHike = (hikes)=>{
         elevationGain: hikeUpdateElevation? hikeUpdateElevation : hikes.elevationGain,
         difficulty: hikeUpdateDifficulty? hikeUpdateDifficulty : hikes.difficulty,
         // imageArray: hikeUpdateImage
-        imageArray: hikeUpdateImage? hikeUpdateImage : hikes.imageArray,
-
+        imageArray: hikeUpdateImage? hikeUpdateImage.split(',') : hikes.imageArray
 
         //////////needs work ^^^^^^^
       }
@@ -331,8 +340,9 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
             googleMapsApiKey='AIzaSyDlshunWWUTan3KLTvvKlOKtRW-Na7cbDo'>
             <GoogleMap
             mapContainerStyle={mapStyles}
-            zoom={13}
-            center={hikes.lat, hikes.lng}
+
+            zoom={10}
+            center={defaultCenter}
 
           />
           </LoadScript>
@@ -371,7 +381,10 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 
         </section>
 
+
       </div>
+
+
     )
   })
 }
@@ -388,4 +401,5 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 
 
 }
+
 export default App
