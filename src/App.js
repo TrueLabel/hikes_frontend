@@ -238,7 +238,7 @@ const handleUpdateHike = (hikes)=>{
         elevationGain: hikeUpdateElevation? hikeUpdateElevation : hikes.elevationGain,
         difficulty: hikeUpdateDifficulty? hikeUpdateDifficulty : hikes.difficulty,
         // imageArray: hikeUpdateImage
-        // imageArray: hikeUpdateImage? hikeUpdateImage : hikes.imageArray
+        imageArray: hikeUpdateImage? hikeUpdateImage.split(' ') : hikes.imageArray
         //////////needs work ^^^^^^^
       }
     ).then(() => {
@@ -295,7 +295,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 </section>
 
 <div className='maincontainer'>
-  {hike.map((hikes, image) => {
+  {hike.map((hikes) => {
     console.log(hikes.imageArray)
     return (
 
@@ -336,7 +336,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         length: <input type='number' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
-        image:  <input type='text' placeholder = 'image url' onChange={handleUpdateHikeImage}/><br/>
+        image:  <input type='text' defaultValue={hikes.imageArray} onChange={handleUpdateHikeImage}/><br/>
         <button onClick={(e) => {handleUpdateHike(hikes)} } type='submit' value='Update Hike'>
         Update hike
         </button>
