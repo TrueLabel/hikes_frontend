@@ -172,7 +172,7 @@ const defaultCenter = {
 }
 //  const center = { lat: lat, lng: lng}
 
-// LatLng={{lat: hikes.lat, lng: hikes.lng}} 
+// LatLng={{lat: hikes.lat, lng: hikes.lng}}
 
 
 // const handleUpdateLng = (e) => {
@@ -308,8 +308,7 @@ length: <input type='text'  onChange={handleNewHikeLength}/><br/>
 elevationGain: <input type='number'  onChange={handlesNewHikeElevation}/><br/>
 difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
 Images: <input type='text' onChange={handleNewHikeImage}/><br/>
-latitude: <input type='text' onChange={handleNewLat}/><br/>
-longitude: <input type='text' onChange={handleNewLng}/><br/>
+
 
 
 <input type='submit' value='Post New Hike'/>
@@ -335,7 +334,7 @@ longitude: <input type='text' onChange={handleNewLng}/><br/>
 
             </Carousel>
       <div className="map">
-    
+
             <LoadScript
             googleMapsApiKey='AIzaSyDlshunWWUTan3KLTvvKlOKtRW-Na7cbDo'>
             <GoogleMap
