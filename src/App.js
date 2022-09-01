@@ -160,17 +160,20 @@ const mapStyles = {
   height: "25vh",
   width: "100%"};
 
+
   // this would be a new state probs for lat & long that represents our updated schema
 
   // const [lat, setLat] = useState("")
   // const [lng, setLng] = useState("")
 
 
+
 const defaultCenter = {
   lat: 60.0180556, lng: -149.9861111
 }
+//  const center = { lat: lat, lng: lng}
 
-
+// LatLng={{lat: hikes.lat, lng: hikes.lng}} 
 
 
 const handleUpdateLat = (e) => {
@@ -216,8 +219,9 @@ const handleNewHike = (e) => {
     length: hikeLength,
     elevationGain: hikeElevation,
     difficulty: hikeDifficulty,
-    imageArray: hikeImage
-
+    imageArray: hikeImage,
+    lat: lat,
+    lng: lng
   }
 ).then(() => {
 
@@ -310,7 +314,8 @@ length: <input type='text'  onChange={handleNewHikeLength}/><br/>
 elevationGain: <input type='number'  onChange={handlesNewHikeElevation}/><br/>
 difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
 Images: <input type='text' onChange={handleNewHikeImage}/><br/>
-
+latitude: <input type='text' onChange={handleNewLat}/><br/>
+longitude: <input type='text' onChange={handleNewLng}/><br/>
 
 
 <input type='submit' value='Post New Hike'/>
@@ -336,13 +341,16 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 
             </Carousel>
       <div className="map">
+    
             <LoadScript
             googleMapsApiKey='AIzaSyDlshunWWUTan3KLTvvKlOKtRW-Na7cbDo'>
             <GoogleMap
             mapContainerStyle={mapStyles}
 
+
             zoom={10}
             center={defaultCenter}
+
 
           />
           </LoadScript>
