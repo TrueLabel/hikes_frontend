@@ -341,7 +341,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
             googleMapsApiKey='AIzaSyDlshunWWUTan3KLTvvKlOKtRW-Na7cbDo'>
             <GoogleMap
             mapContainerStyle={mapStyles}
-            zoom={13}
+            zoom={10}
             center={defaultCenter}
           />
           </LoadScript>
