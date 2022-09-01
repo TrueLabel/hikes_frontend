@@ -174,9 +174,6 @@ const defaultCenter = {
 
 // LatLng={{lat: hikes.lat, lng: hikes.lng}} 
 
-// const handleUpdateLat = (e) => {
-//   setLat(e.targer.value)
-// }
 
 // const handleUpdateLng = (e) => {
 //   setLng(e.target.value)
@@ -218,7 +215,7 @@ const handleNewHike = (e) => {
     elevationGain: hikeElevation,
     difficulty: hikeDifficulty,
     imageArray: hikeImage,
-    
+
   }
 ).then(() => {
 
@@ -282,7 +279,7 @@ const handleUpdateHike = (hikes)=>{
           setHike(response.data);
         })
   })
-  setDisplayEditHike(!displayEditHike)
+  showEditImages()
 
 }
 
@@ -311,7 +308,8 @@ length: <input type='text'  onChange={handleNewHikeLength}/><br/>
 elevationGain: <input type='number'  onChange={handlesNewHikeElevation}/><br/>
 difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
 Images: <input type='text' onChange={handleNewHikeImage}/><br/>
-
+latitude: <input type='text' onChange={handleNewLat}/><br/>
+longitude: <input type='text' onChange={handleNewLng}/><br/>
 
 
 <input type='submit' value='Post New Hike'/>
@@ -349,6 +347,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
             center= {{lat: hikes.lat , lng: hikes.lng }}
 
 
+
           />
           </LoadScript>
      </div>
@@ -377,7 +376,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         length: <input type='text' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
-        image: <input type='text' placeholder='image url' onChange={handleUpdateHikeImage}/><br/>
+        image: <input type='text' defaultValue={hikes.imageArray} onChange={handleUpdateHikeImage}/><br/>
 
 
         <button onClick={(e) => {handleUpdateHike(hikes)} } type='submit' value='Update Hike'>
