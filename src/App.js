@@ -160,7 +160,7 @@ const mapStyles = {
   // const [lng, setLng] = useState("")
 
 const defaultCenter = {
-  lat: 41.3851, lng: 2.1734
+  lat: 60.0180556, lng: -149.9861111
 }
 
 
