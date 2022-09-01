@@ -47,6 +47,10 @@ button {
   padding: 3px;
 }
 
+.showhide {
+  display: none;
+}
+
 body {
   text-align: center;
   background-color: RGB(0,0,0,.175);
