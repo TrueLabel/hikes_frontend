@@ -333,7 +333,8 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
             <GoogleMap
             mapContainerStyle={mapStyles}
             zoom={13}
-            center={defaultCenter}
+            center={hikes.lat, hikes.lng}
+
           />
           </LoadScript>
      </div>
