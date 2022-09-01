@@ -1,9 +1,10 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useCallback} from 'react'
 import axios from 'axios'
 import './App.css';
 import { Carousel } from 'react-responsive-carousel';
 import CarouselComponent from "./components/carousel.component";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 
 
@@ -12,10 +13,14 @@ const App = () => {
 ////////////// HOOKS /////////////////////////
 // hike array state
 const [hike, setHike] = useState([])
+
+//carousel
+
 // display states
 const [displayHike, setDisplayHike] = useState(false)
 const [displayAddHike, setDisplayAddHike] = useState(false)
 const [displayEditHike, setDisplayEditHike] = useState(false)
+const [displayHikeImages, setHikeImages] = useState(false)
 
 // model states
 const [hikeName, setHikeName] = useState("")
@@ -39,10 +44,17 @@ const [hikeUpdateDescription, setUpdateHikeDescription] = useState("")
 const [hikeUpdateLength, setUpdateHikeLength] = useState()
 const [hikeUpdateElevation, setUpdateHikeElevation] = useState()
 const [hikeUpdateDifficulty, setUpdateHikeDifficulty] = useState("")
-// const [hikeUpdateImage, setUpdateHikeImage] = useState("")
+const [hikeUpdateImage, setUpdateHikeImage] = useState("")
 
 
 // const [hikedUpdateYet, setUpdateHikedYet] = useState(false)
+
+
+
+
+
+
+
 
 
 /// DISPLAYS ///
@@ -59,6 +71,10 @@ const showAddHikes = () => {
 const showEditHikes = () => {
   setDisplayEditHike(!displayEditHike)
 
+}
+
+const showEditImages = () => {
+  setHikeImages(!displayHikeImages)
 }
 
 
@@ -135,26 +151,38 @@ const handleNewHikeImage = (e) => {
 }
 
 
-// const handleUpdateHikeImage = (e) => {
-//   setUpdateHikeImage(e.target.value)
-// }
+const handleUpdateHikeImage = (e) => {
+  setUpdateHikeImage(e.target.value)
+}
 
+// GOOGLE MAPS API
+const mapStyles = {
+  height: "25vh",
+  width: "100%"};
 
+  // this would be a new state probs for lat & long that represents our updated schema
+  // const [lat, setLat] = useState("")
+  // const [lng, setLng] = useState("")
 
+const defaultCenter = {
+  lat: 60.0180556, lng: -149.9861111
+}
 
 
 
 // IMAGE ARRAY NEW & UPDATE////
 
 // const handleNewHikeImages = () => {
-
+//
 //   setHikeImageArray([hikeImage].concat(hikeImageArray))
 // }
 
 // const handleUpdateHikeImages = () => {
-
+//
 //   setHikeImageArray([hikeUpdateImage].concat(hikeImageArray))
 // }
+
+
 //HIKED YET NEW & UPDATE////
 // const handlesNewHikedYet = (e) => {
 //   setHikedYet(e.target.checked)
@@ -231,8 +259,7 @@ const handleUpdateHike = (hikes)=>{
         elevationGain: hikeUpdateElevation? hikeUpdateElevation : hikes.elevationGain,
         difficulty: hikeUpdateDifficulty? hikeUpdateDifficulty : hikes.difficulty,
         // imageArray: hikeUpdateImage
-
-        // imageArray: hikeUpdateImage? hikeUpdateImage : hikes.imageArray
+        imageArray: hikeUpdateImage? hikeUpdateImage.split(',') : hikes.imageArray
         //////////needs work ^^^^^^^
       }
     ).then(() => {
@@ -243,19 +270,30 @@ const handleUpdateHike = (hikes)=>{
         })
   })
   setDisplayEditHike(!displayEditHike)
+
 }
 
-// const imageLoop = () => {
-//   for(let i = 0; i < hike.imageArray.length; i++) {
 
-//   }
-// }
+
+
+
+
+const addImageArray = ()=>{
+  hike.imageArray.unshift()
+}
+
+
+
+
 
 
 return (
 <div>
-  <h1> State of Mind Hikes </h1>
 
+  <h1> State of Mind Hikes </h1>
+  <div >
+
+  </div>
 <section>
 
 <h2> Post New Hike </h2>
@@ -289,7 +327,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
       <div className='card' key={hikes._id}>
 
           <div className="carousel-wrapper">
-            <Carousel>
+            <Carousel showThumbs={false}>
             {hikes.imageArray?.map((images)=>{
               return(
 
@@ -298,6 +336,16 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
             })}
 
             </Carousel>
+      <div className="map">
+            <LoadScript
+            googleMapsApiKey='AIzaSyDlshunWWUTan3KLTvvKlOKtRW-Na7cbDo'>
+            <GoogleMap
+            mapContainerStyle={mapStyles}
+            zoom={13}
+            center={defaultCenter}
+          />
+          </LoadScript>
+     </div>
         </div>
 
         <h2>{hikes.name} <br/> {hikes.city}  {hikes.state} <br/> {hikes.length} Miles <br/> {hikes.elevationGain} Ft <br/> {hikes.difficulty}</h2>
@@ -323,15 +371,18 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         length: <input type='text' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
-
-
+        image:  <input type='text' defaultValue={hikes.imageArray} onChange={handleUpdateHikeImage}/><br/>
         <button onClick={(e) => {handleUpdateHike(hikes)} } type='submit' value='Update Hike'>
         Update hike
         </button>
-
         </section>
         : null }
+
+
+
       </div>
+
+
     )
   })
 }
@@ -348,4 +399,5 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 
 
 }
-export default App;
+
+export default App
