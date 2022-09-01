@@ -45,7 +45,8 @@ const [hikeUpdateLength, setUpdateHikeLength] = useState()
 const [hikeUpdateElevation, setUpdateHikeElevation] = useState()
 const [hikeUpdateDifficulty, setUpdateHikeDifficulty] = useState("")
 const [hikeUpdateImage, setUpdateHikeImage] = useState("")
-
+const [lat, setLat] = useState("")
+const [lng, setLng] = useState("")
 
 // const [hikedUpdateYet, setUpdateHikedYet] = useState(false)
 
@@ -68,9 +69,8 @@ const showAddHikes = () => {
   setDisplayAddHike(!displayAddHike)
 }
 
-const showEditHikes = () => {
-  setDisplayEditHike(!displayEditHike)
-
+const showEditHikes = (hikes) => {
+  document.getElementById('edithike'+hikes._id).classList.toggle('showhide');
 }
 
 const showEditImages = () => {
@@ -161,14 +161,25 @@ const mapStyles = {
   width: "100%"};
 
   // this would be a new state probs for lat & long that represents our updated schema
+
   // const [lat, setLat] = useState("")
   // const [lng, setLng] = useState("")
+
 
 const defaultCenter = {
   lat: 60.0180556, lng: -149.9861111
 }
 
 
+
+
+const handleUpdateLat = (e) => {
+  setLat(e.targer.value)
+}
+
+const handleUpdateLng = (e) => {
+  setLng(e.target.value)
+}
 
 // IMAGE ARRAY NEW & UPDATE////
 
@@ -260,6 +271,7 @@ const handleUpdateHike = (hikes)=>{
         difficulty: hikeUpdateDifficulty? hikeUpdateDifficulty : hikes.difficulty,
         // imageArray: hikeUpdateImage
         imageArray: hikeUpdateImage? hikeUpdateImage.split(',') : hikes.imageArray
+
         //////////needs work ^^^^^^^
       }
     ).then(() => {
@@ -272,19 +284,6 @@ const handleUpdateHike = (hikes)=>{
   setDisplayEditHike(!displayEditHike)
 
 }
-
-
-
-
-
-
-const addImageArray = ()=>{
-  hike.imageArray.unshift()
-}
-
-
-
-
 
 
 return (
@@ -341,8 +340,10 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
             googleMapsApiKey='AIzaSyDlshunWWUTan3KLTvvKlOKtRW-Na7cbDo'>
             <GoogleMap
             mapContainerStyle={mapStyles}
+
             zoom={10}
             center={defaultCenter}
+
           />
           </LoadScript>
      </div>
@@ -360,10 +361,10 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         Remove this Hike</button>
         <br/>
 
-        <button onClick={showEditHikes}>Edit</button>
-        {displayEditHike ?
+        <button onClick={() => {showEditHikes(hikes)}}>Edit</button>
 
-        <section>
+
+        <section className='showhide' id={'edithike'+hikes._id}>
         name: <input type='text' placeholder={hikes.name} onChange={handleUpdateHikeName}/><br/>
         state: <input type='text' placeholder={hikes.state}  onChange={handleUpdateHikeState}/><br/>
         city: <input type='text' placeholder={hikes.city} onChange={handleUpdateHikeCity}/><br/>
@@ -371,13 +372,14 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         length: <input type='text' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
-        image:  <input type='text' defaultValue={hikes.imageArray} onChange={handleUpdateHikeImage}/><br/>
+        image: <input type='text' placeholder='image url' onChange={handleUpdateHikeImage}/><br/>
+
+
         <button onClick={(e) => {handleUpdateHike(hikes)} } type='submit' value='Update Hike'>
         Update hike
         </button>
-        </section>
-        : null }
 
+        </section>
 
 
       </div>
