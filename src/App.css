@@ -22,6 +22,10 @@ img {
   margin-top: 10px;
 }
 
+.map {
+  object-fit: contain;
+}
+
 .header {
   position: static;
   top: 100px;
