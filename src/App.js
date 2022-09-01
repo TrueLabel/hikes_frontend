@@ -20,6 +20,7 @@ const [hike, setHike] = useState([])
 const [displayHike, setDisplayHike] = useState(false)
 const [displayAddHike, setDisplayAddHike] = useState(false)
 const [displayEditHike, setDisplayEditHike] = useState(false)
+const [displayHikeImages, setHikeImages] = useState(false)
 
 // model states
 const [hikeName, setHikeName] = useState("")
@@ -70,6 +71,10 @@ const showAddHikes = () => {
 const showEditHikes = () => {
   setDisplayEditHike(!displayEditHike)
 
+}
+
+const showEditImages = () => {
+  setHikeImages(!displayHikeImages)
 }
 
 
@@ -168,14 +173,16 @@ const defaultCenter = {
 // IMAGE ARRAY NEW & UPDATE////
 
 // const handleNewHikeImages = () => {
-
+//
 //   setHikeImageArray([hikeImage].concat(hikeImageArray))
 // }
 
 // const handleUpdateHikeImages = () => {
-
+//
 //   setHikeImageArray([hikeUpdateImage].concat(hikeImageArray))
 // }
+
+
 //HIKED YET NEW & UPDATE////
 // const handlesNewHikedYet = (e) => {
 //   setHikedYet(e.target.checked)
@@ -252,8 +259,7 @@ const handleUpdateHike = (hikes)=>{
         elevationGain: hikeUpdateElevation? hikeUpdateElevation : hikes.elevationGain,
         difficulty: hikeUpdateDifficulty? hikeUpdateDifficulty : hikes.difficulty,
         // imageArray: hikeUpdateImage
-        imageArray: hikeUpdateImage? hikeUpdateImage : hikes.imageArray
-
+        imageArray: hikeUpdateImage? hikeUpdateImage.split(' ') : hikes.imageArray
         //////////needs work ^^^^^^^
       }
     ).then(() => {
@@ -264,8 +270,22 @@ const handleUpdateHike = (hikes)=>{
         })
   })
   setDisplayEditHike(!displayEditHike)
-  
+
 }
+
+
+
+
+
+
+const addImageArray = ()=>{
+  hike.imageArray.unshift()
+}
+
+
+
+
+
 
 return (
 <div>
@@ -351,15 +371,18 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         length: <input type='text' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
-        image: <input type='text' placeholder='image url' onChange={handleUpdateHikeImage}/><br/>
-
+        image:  <input type='text' defaultValue={hikes.imageArray} onChange={handleUpdateHikeImage}/><br/>
         <button onClick={(e) => {handleUpdateHike(hikes)} } type='submit' value='Update Hike'>
         Update hike
         </button>
-        
         </section>
         : null }
+
+
+
       </div>
+
+
     )
   })
 }
@@ -376,5 +399,6 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 
 
 }
+
 export default App
 
