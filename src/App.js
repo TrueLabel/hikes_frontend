@@ -195,7 +195,7 @@ const handleNewHike = (e) => {
       setHike(response.data)
     })
   })
-
+  setDisplayAddHike(!displayAddHike)
 }
 
 
@@ -249,6 +249,7 @@ const handleUpdateHike = (hikes)=>{
         })
   })
   setDisplayEditHike(!displayEditHike)
+
 }
 
 
@@ -282,7 +283,7 @@ name: <input type='text'  onChange={handleNewHikeName}/><br/>
 state: <input type='text'  onChange={handleNewHikeState}/><br/>
 city: <input type='text'  onChange={handleNewHikeCity}/><br/>
 description: <input type='text'  onChange={handlesNewHikeDescription}/><br/>
-length: <input type='number'  onChange={handleNewHikeLength}/><br/>
+length: <input type='text'  onChange={handleNewHikeLength}/><br/>
 elevationGain: <input type='number'  onChange={handlesNewHikeElevation}/><br/>
 difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
 Images: <input type='text' onChange={handleNewHikeImage}/><br/>
@@ -333,7 +334,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         state: <input type='text' placeholder={hikes.state}  onChange={handleUpdateHikeState}/><br/>
         city: <input type='text' placeholder={hikes.city} onChange={handleUpdateHikeCity}/><br/>
         description: <input type='text' placeholder={hikes.description} onChange={handleUpdateHikeDescription}/><br/>
-        length: <input type='number' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
+        length: <input type='text' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
         image:  <input type='text' defaultValue={hikes.imageArray} onChange={handleUpdateHikeImage}/><br/>
