@@ -172,7 +172,7 @@ const defaultCenter = {
 }
 //  const center = { lat: lat, lng: lng}
 
-// LatLng={{lat: hikes.lat, lng: hikes.lng}} 
+// LatLng={{lat: hikes.lat, lng: hikes.lng}}
 
 
 // const handleUpdateLng = (e) => {
@@ -286,40 +286,41 @@ const handleUpdateHike = (hikes)=>{
 
 return (
 <div>
-
-  <h1> State of Mind Hikes </h1>
+  <img className='background' src="https://img.freepik.com/premium-vector/landscape-mountains-hand-drawn-illustration_514781-34.jpg?w=2000"/>
+  <h1 className='header'> State of Mind Hikes </h1>
   <div >
 
   </div>
 <section>
 
-<h2> Post New Hike </h2>
-<button onClick={showAddHikes}>
-Add Here
+
+<button className='addbutton' onClick={showAddHikes}>
+ADD HIKE HERE
 </button>
 {displayAddHike?
+  <div className='addformbox'>
 <form onSubmit = {handleNewHike}>
 
-name: <input type='text'  onChange={handleNewHikeName}/><br/>
-state: <input type='text'  onChange={handleNewHikeState}/><br/>
-city: <input type='text'  onChange={handleNewHikeCity}/><br/>
-description: <input type='text'  onChange={handlesNewHikeDescription}/><br/>
-length: <input type='text'  onChange={handleNewHikeLength}/><br/>
-elevationGain: <input type='number'  onChange={handlesNewHikeElevation}/><br/>
-difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
-Images: <input type='text' onChange={handleNewHikeImage}/><br/>
-latitude: <input type='text' onChange={handleNewLat}/><br/>
-longitude: <input type='text' onChange={handleNewLng}/><br/>
+<label>Name: </label><input className='forminput' type='text'  onChange={handleNewHikeName}/><br/>
+<label>State: </label><input type='text' className='forminput' onChange={handleNewHikeState}/><br/>
+<label>City: </label><input type='text' className='forminput' onChange={handleNewHikeCity}/><br/>
+<label>Description: </label><input type='text' className='forminput' onChange={handlesNewHikeDescription}/><br/>
+<label>Length: </label><input type='text' className='forminput' onChange={handleNewHikeLength}/><br/>
+<label>Elevation Gain: </label><input type='number' className='forminput' onChange={handlesNewHikeElevation}/><br/>
+<label>Difficulty: </label><input type='text' className='forminput' onChange={handleNewHikeDifficulty}/><br/>
+<label>Images: </label><input type='text' className='forminput' onChange={handleNewHikeImage}/><br/>
 
 
-<input type='submit' value='Post New Hike'/>
+
+<input className='inputbutton' type='submit' value='Post New Hike'/>
+
 </form>
+</div>
 : null }
 </section>
 
 <div className='maincontainer'>
   {hike.map((hikes) => {
-    console.log(hikes.imageArray)
     return (
 
       <div className='card' key={hikes._id}>
@@ -335,7 +336,7 @@ longitude: <input type='text' onChange={handleNewLng}/><br/>
 
             </Carousel>
       <div className="map">
-    
+
             <LoadScript
             googleMapsApiKey='AIzaSyDlshunWWUTan3KLTvvKlOKtRW-Na7cbDo'>
             <GoogleMap
@@ -359,31 +360,33 @@ longitude: <input type='text' onChange={handleNewLng}/><br/>
           <summary>Description</summary>
           {hikes.description}
         </details>
-        <button onClick = {(e) => {
+        <button className='divbutton' onClick = {(e) => {
             handleDelete(hikes)
         }}>
         Remove this Hike</button>
         <br/>
 
-        <button onClick={() => {showEditHikes(hikes)}}>Edit</button>
+        <button className='divbutton' onClick={() => {showEditHikes(hikes)}}>Edit</button>
 
 
         <section className='showhide' id={'edithike'+hikes._id}>
-        name: <input type='text' placeholder={hikes.name} onChange={handleUpdateHikeName}/><br/>
-        state: <input type='text' placeholder={hikes.state}  onChange={handleUpdateHikeState}/><br/>
-        city: <input type='text' placeholder={hikes.city} onChange={handleUpdateHikeCity}/><br/>
-        description: <input type='text' placeholder={hikes.description} onChange={handleUpdateHikeDescription}/><br/>
-        length: <input type='text' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
-        elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
-        difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
-        image: <input type='text' defaultValue={hikes.imageArray} onChange={handleUpdateHikeImage}/><br/>
-
-
+        <div className='editformbox'>
+        <label>Name: </label><input className='forminput' type='text' placeholder={hikes.name} onChange={handleUpdateHikeName}/><br/>
+        <label>State: </label><input className='forminput' type='text' placeholder={hikes.state}  onChange={handleUpdateHikeState}/><br/>
+        <label>City: </label><input className='forminput' type='text' placeholder={hikes.city} onChange={handleUpdateHikeCity}/><br/>
+        <label>Description: </label><input className='forminput' type='text' placeholder={hikes.description} onChange={handleUpdateHikeDescription}/><br/>
+        <label>Length: </label><input className='forminput' type='text' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
+        <label>Elevation Gain: </label><input className='forminput' type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
+        <label>Difficulty: </label><input className='forminput' type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
+        <label>Image: </label><input className='forminput' type='text' defaultValue={hikes.imageArray} onChange={handleUpdateHikeImage}/><br/>
+        </div>
         <button onClick={(e) => {handleUpdateHike(hikes)} } type='submit' value='Update Hike'>
         Update hike
         </button>
 
         </section>
+
+
 
 
       </div>
