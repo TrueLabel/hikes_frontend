@@ -68,9 +68,8 @@ const showAddHikes = () => {
   setDisplayAddHike(!displayAddHike)
 }
 
-const showEditHikes = () => {
-  setDisplayEditHike(!displayEditHike)
-
+const showEditHikes = (hikes) => {
+  document.getElementById('edithike'+hikes._id).classList.toggle('showhide');
 }
 
 
@@ -262,8 +261,7 @@ const handleUpdateHike = (hikes)=>{
         difficulty: hikeUpdateDifficulty? hikeUpdateDifficulty : hikes.difficulty,
         // imageArray: hikeUpdateImage
         imageArray: hikeUpdateImage? hikeUpdateImage : hikes.imageArray,
-        lat: lat? lat : hikes.lat,
-        lng: lng? lng : hikes.lng
+
 
         //////////needs work ^^^^^^^
       }
@@ -277,6 +275,7 @@ const handleUpdateHike = (hikes)=>{
   setDisplayEditHike(!displayEditHike)
 
 }
+
 
 return (
 <div>
@@ -352,10 +351,10 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         Remove this Hike</button>
         <br/>
 
-        <button onClick={showEditHikes}>Edit</button>
-        {displayEditHike ?
+        <button onClick={() => {showEditHikes(hikes)}}>Edit</button>
 
-        <section>
+
+        <section className='showhide' id={'edithike'+hikes._id}>
         name: <input type='text' placeholder={hikes.name} onChange={handleUpdateHikeName}/><br/>
         state: <input type='text' placeholder={hikes.state}  onChange={handleUpdateHikeState}/><br/>
         city: <input type='text' placeholder={hikes.city} onChange={handleUpdateHikeCity}/><br/>
@@ -364,15 +363,14 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
         image: <input type='text' placeholder='image url' onChange={handleUpdateHikeImage}/><br/>
-        lat: <input type='text' placeholder={hikes.lat} onChange={handleUpdateLat}/><br/>
-        lng: <input type='text' placeholder={hikes.lng} onChange={handleUpdateLng}/><br/>
+
 
         <button onClick={(e) => {handleUpdateHike(hikes)} } type='submit' value='Update Hike'>
         Update hike
         </button>
 
         </section>
-        : null }
+
       </div>
     )
   })
