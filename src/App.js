@@ -14,7 +14,7 @@ const App = () => {
 // hike array state
 const [hike, setHike] = useState([])
 
-//carousel 
+//carousel
 
 // display states
 const [displayHike, setDisplayHike] = useState(false)
@@ -156,11 +156,11 @@ const handleUpdateHikeImage = (e) => {
 }
 
 // GOOGLE MAPS API
-const mapStyles = {        
+const mapStyles = {
   height: "25vh",
   width: "100%"};
 
-  // this would be a new state probs for lat & long that represents our updated schema 
+  // this would be a new state probs for lat & long that represents our updated schema
   // const [lat, setLat] = useState("")
   // const [lng, setLng] = useState("")
 
@@ -259,7 +259,7 @@ const handleUpdateHike = (hikes)=>{
         elevationGain: hikeUpdateElevation? hikeUpdateElevation : hikes.elevationGain,
         difficulty: hikeUpdateDifficulty? hikeUpdateDifficulty : hikes.difficulty,
         // imageArray: hikeUpdateImage
-        imageArray: hikeUpdateImage? hikeUpdateImage.split(' ') : hikes.imageArray
+        imageArray: hikeUpdateImage? hikeUpdateImage.split(',') : hikes.imageArray
         //////////needs work ^^^^^^^
       }
     ).then(() => {
@@ -289,7 +289,7 @@ const addImageArray = ()=>{
 
 return (
 <div>
-  
+
   <h1> State of Mind Hikes </h1>
   <div >
 
@@ -330,7 +330,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
             <Carousel showThumbs={false}>
             {hikes.imageArray?.map((images)=>{
               return(
-                
+
                 <img src={images}/>
               )
             })}
@@ -347,7 +347,7 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
           </LoadScript>
      </div>
         </div>
-    
+
         <h2>{hikes.name} <br/> {hikes.city}  {hikes.state} <br/> {hikes.length} Miles <br/> {hikes.elevationGain} Ft <br/> {hikes.difficulty}</h2>
 
         <details>
@@ -401,4 +401,3 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 }
 
 export default App
-
