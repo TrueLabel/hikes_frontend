@@ -188,7 +188,7 @@ const handleNewHike = (e) => {
       setHike(response.data)
     })
   })
-
+  setDisplayAddHike(!displayAddHike)
 }
 
 
@@ -232,6 +232,7 @@ const handleUpdateHike = (hikes)=>{
         difficulty: hikeUpdateDifficulty? hikeUpdateDifficulty : hikes.difficulty,
         // imageArray: hikeUpdateImage
         imageArray: hikeUpdateImage? hikeUpdateImage : hikes.imageArray
+
         //////////needs work ^^^^^^^
       }
     ).then(() => {
@@ -242,6 +243,7 @@ const handleUpdateHike = (hikes)=>{
         })
   })
   setDisplayEditHike(!displayEditHike)
+  
 }
 
 return (
@@ -261,7 +263,7 @@ name: <input type='text'  onChange={handleNewHikeName}/><br/>
 state: <input type='text'  onChange={handleNewHikeState}/><br/>
 city: <input type='text'  onChange={handleNewHikeCity}/><br/>
 description: <input type='text'  onChange={handlesNewHikeDescription}/><br/>
-length: <input type='number'  onChange={handleNewHikeLength}/><br/>
+length: <input type='text'  onChange={handleNewHikeLength}/><br/>
 elevationGain: <input type='number'  onChange={handlesNewHikeElevation}/><br/>
 difficulty: <input type='text'  onChange={handleNewHikeDifficulty}/><br/>
 Images: <input type='text' onChange={handleNewHikeImage}/><br/>
@@ -312,14 +314,15 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
         state: <input type='text' placeholder={hikes.state}  onChange={handleUpdateHikeState}/><br/>
         city: <input type='text' placeholder={hikes.city} onChange={handleUpdateHikeCity}/><br/>
         description: <input type='text' placeholder={hikes.description} onChange={handleUpdateHikeDescription}/><br/>
-        length: <input type='number' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
+        length: <input type='text' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
         image: <input type='text' placeholder='image url' onChange={handleUpdateHikeImage}/><br/>
+
         <button onClick={(e) => {handleUpdateHike(hikes)} } type='submit' value='Update Hike'>
         Update hike
         </button>
-
+        
         </section>
         : null }
       </div>
@@ -340,3 +343,4 @@ Images: <input type='text' onChange={handleNewHikeImage}/><br/>
 
 }
 export default App;
+
