@@ -7,7 +7,6 @@
   pointer-events: none;
 }
 
-
 img {
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
@@ -46,6 +45,10 @@ button {
   background-color: black;
   color: white;
   padding: 3px;
+}
+
+.showhide {
+  display: none;
 }
 
 body {
@@ -90,3 +93,5 @@ button:hover {
     transform: rotate(360deg);
   }
 }
+
+
