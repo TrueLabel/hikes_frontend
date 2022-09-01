@@ -285,7 +285,7 @@ const handleUpdateHike = (hikes)=>{
           setHike(response.data);
         })
   })
-  setDisplayEditHike(!displayEditHike)
+  showEditImages()
 
 }
 
@@ -380,7 +380,7 @@ longitude: <input type='text' onChange={handleNewLng}/><br/>
         length: <input type='text' placeholder={hikes.length} onChange={handleUpdateHikeLength}/><br/>
         elevationGain: <input type='number' placeholder={hikes.elevationGain} onChange={handleUpdateHikeElevation}/><br/>
         difficulty: <input type='text' placeholder={hikes.difficulty} onChange={handleUpdateHikeDifficulty}/><br/>
-        image: <input type='text' placeholder='image url' onChange={handleUpdateHikeImage}/><br/>
+        image: <input type='text' defaultValue={hikes.imageArray} onChange={handleUpdateHikeImage}/><br/>
 
 
         <button onClick={(e) => {handleUpdateHike(hikes)} } type='submit' value='Update Hike'>
